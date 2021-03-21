@@ -27,15 +27,15 @@ namespace Tarea1DWB_DBFirst_EFCore
             NorthwindContext northwindContext = new NorthwindContext();
 
             //Variable que recibe a la entidad Products pero no materializada.
-            var ProductQuery = northwindContext.Products.Select(p => new
+            var ProductQuery = northwindContext.Products.Where(w => w.ProductName == productName).Select(p => new
             {
                 ID = p.ProductId,
                 Producto = p.ProductName,
                 CantporUnidad = p.QuantityPerUnit,
                 Precio = p.UnitPrice,
-                disponibilidad = p.UnitsInStock,
-                continuidad = p.Discontinued
-            }).Where(w => w.Producto == productName);
+                Disponibilidad = p.UnitsInStock,
+                Continuidad = p.Discontinued
+            });
 
             //Materialización de productQuery
             var outPut = ProductQuery.ToList();
@@ -65,7 +65,7 @@ namespace Tarea1DWB_DBFirst_EFCore
             NorthwindContext northwindContext = new NorthwindContext();
 
             //Variable que recibe a la entidad Employees pero no materializada.
-            var employeesQuery = northwindContext.Employees.Select(e => new
+            var employeesQuery = northwindContext.Employees.Where(w => w.FirstName == employeeFirstName && w.LastName == employeeLastName).Select(e => new
             {
                 ID = e.EmployeeId,
                 Nombre = e.FirstName,
@@ -73,7 +73,7 @@ namespace Tarea1DWB_DBFirst_EFCore
                 Puesto = e.Title,
                 Dirección = e.Address,
                 Telefono = e.HomePhone
-            }).Where(w => w.Nombre == employeeFirstName && w.Apellido == employeeLastName);
+            });
 
             //Materialización de employeesQuery
             var outPut = employeesQuery.ToList();
