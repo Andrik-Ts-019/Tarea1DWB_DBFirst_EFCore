@@ -29,19 +29,19 @@ namespace Tarea1DWB_DBFirst_EFCore
             //Variable que recibe a la entidad Products pero no materializada.
             var ProductQuery = northwindContext.Products.Select(p => new
             {
-                p.ProductId,
-                p.ProductName,
-                p.QuantityPerUnit,
-                p.UnitPrice,
-                p.UnitsInStock,
-                p.Discontinued
-            }).Where(w => w.ProductName == productName);
+                ID = p.ProductId,
+                Producto = p.ProductName,
+                CantporUnidad = p.QuantityPerUnit,
+                Precio = p.UnitPrice,
+                disponibilidad = p.UnitsInStock,
+                continuidad = p.Discontinued
+            }).Where(w => w.Producto == productName);
 
             //Materialización de productQuery
             var outPut = ProductQuery.ToList();
 
             //Imprimir el nombre de los productos en la tabla Products
-            outPut.ForEach(i => Console.WriteLine("Producto: " + i.ProductName));
+            outPut.ForEach(i => Console.WriteLine("Producto: " + i.Producto));
         }
 
         public static void selectEmployees()
@@ -67,19 +67,19 @@ namespace Tarea1DWB_DBFirst_EFCore
             //Variable que recibe a la entidad Employees pero no materializada.
             var employeesQuery = northwindContext.Employees.Select(e => new
             {
-                e.EmployeeId,
-                e.FirstName,
-                e.LastName,
-                e.Title,
-                e.Address,
-                e.HomePhone
-            }).Where(w => w.FirstName == employeeFirstName && w.LastName == employeeLastName);
+                ID = e.EmployeeId,
+                Nombre = e.FirstName,
+                Apellido = e.LastName,
+                Puesto = e.Title,
+                Dirección = e.Address,
+                Telefono = e.HomePhone
+            }).Where(w => w.Nombre == employeeFirstName && w.Apellido == employeeLastName);
 
             //Materialización de employeesQuery
             var outPut = employeesQuery.ToList();
 
             //Imprimir el id y nombre completo de los empleados registrados en la tabla Employees
-            outPut.ForEach(i => Console.WriteLine("ID: " + i.EmployeeId + " " + i.FirstName + " " + i.Title + " " + i.Address));
+            outPut.ForEach(i => Console.WriteLine("ID: " + i.ID + " " + i.Nombre + " " + i.Puesto + " " + i.Dirección));
         }
 
         public static void joinOrdersOrderDetals(int id = 0)
