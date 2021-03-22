@@ -8,6 +8,7 @@ namespace Tarea1DWB_DBFirst_EFCore
     {
         public static NorthwindContext dbContext = new NorthwindContext();
 
+        #region Methods
         public static void SelectProducts()
         {
             var productsQuery = GetAllProducts();
@@ -36,7 +37,7 @@ namespace Tarea1DWB_DBFirst_EFCore
             Products currentProduct = GetProductByID(productId);
 
             if (currentProduct == null)
-                throw new Exception("ID de producto no escontrado");
+                throw new Exception("\nID de producto no escontrado");
 
             currentProduct.ProductName = productName;
 
@@ -107,8 +108,8 @@ namespace Tarea1DWB_DBFirst_EFCore
 
             dbContext.SaveChanges();
         }
+        #endregion
 
-        //Métodos privados
         #region privateMethods
         private static IQueryable<Products> GetAllProducts()
         {
