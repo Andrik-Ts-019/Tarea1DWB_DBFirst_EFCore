@@ -20,7 +20,6 @@ namespace Tarea1DWB_DBFirst_EFCore
             var outPut = productsQuery.ToList();
         }
 
-        //Mostramos los datos de un producto en especial
         public static void SelectProduct(string productName)
         {
             var productQuery = productService.GetAllProducts().Where(w => w.ProductName == productName).Select(p => new
@@ -52,7 +51,6 @@ namespace Tarea1DWB_DBFirst_EFCore
         }
 
 
-        //Devuelve el producto, cliente y empleado por OrderID
         public static void OrderProducts(int orderId)
         {
             var ordersQuery = orderService.GetOrderById(orderId).Select(o => new
@@ -71,7 +69,6 @@ namespace Tarea1DWB_DBFirst_EFCore
             var outPut = employeesQuery.ToList();
         }
 
-        //Mostramos los datos de un empleado en especial
         public static void SelectEmployee(string employeeFirstName, string employeeLastName)
         {
             var employeeQuery = employeeService.GetAllEmployees().
