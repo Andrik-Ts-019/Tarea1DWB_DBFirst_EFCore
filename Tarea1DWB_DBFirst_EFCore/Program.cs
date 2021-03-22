@@ -36,9 +36,19 @@ namespace Tarea1DWB_DBFirst_EFCore
             //var outPut = productQuery.ToList();
         }
 
+        public static void ChangeProductName(int productId, string productName)
+        {
+            productService.UpdateProductName(productId, productName);
+        }
+
         public static void AddProduct(string productName, int? supplierId, int? categoryId, decimal? unitPrice, short? unitsInStock, short? unitsOnOrder, short? reorderLevel, bool discontinued = false, string quantityPerUnit = "")
         {
             productService.AddNewProduct(productName, supplierId, categoryId, unitPrice, unitsInStock, unitsOnOrder, reorderLevel, discontinued, quantityPerUnit);
+        }
+
+        public static void RemoveProducto(int productId)
+        {
+            productService.DeleteProduct(productId);
         }
 
 
@@ -76,7 +86,12 @@ namespace Tarea1DWB_DBFirst_EFCore
                     Telefono = e.HomePhone
                 });
 
-            var outPut = employeeQuery.ToList();
+            //var outPut = employeeQuery.ToList();
+        }
+
+        public void ChangeEmployeeName(int employeeID, string employeeName, int isFirstName = 1)
+        {
+            employeeService.UpdateEmployeeName(employeeID, employeeName, isFirstName);
         }
         #endregion
 
