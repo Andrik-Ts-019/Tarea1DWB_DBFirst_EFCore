@@ -16,8 +16,6 @@ namespace Tarea1DWB_DBFirst_EFCore
         public static void SelectProducts()
         {
             var productsQuery = productService.GetAllProducts();
-
-            //var outPut = productsQuery.ToList();
         }
 
         //Mostramos los datos de un producto en especial
@@ -32,8 +30,6 @@ namespace Tarea1DWB_DBFirst_EFCore
                 Disponibilidad = p.UnitsInStock,
                 Continuidad = p.Discontinued
             });
-
-            //var outPut = productQuery.ToList();
         }
 
         public static void ChangeProductName(int productId, string productName)
@@ -61,15 +57,11 @@ namespace Tarea1DWB_DBFirst_EFCore
                     Empleado = o.Employee.FirstName,
                     Productos = o.OrderDetails.Select(ordDet => ordDet.Product.ProductName)
                 });
-
-            var outPut = ordersQuery.ToList();
         }
 
         public static void SelectEmployees()
         {
             var employeesQuery = employeeService.GetAllEmployees();
-
-            var outPut = employeesQuery.ToList();
         }
 
         //Mostramos los datos de un empleado en especial
@@ -85,8 +77,6 @@ namespace Tarea1DWB_DBFirst_EFCore
                     Dirección = e.Address,
                     Telefono = e.HomePhone
                 });
-
-            //var outPut = employeeQuery.ToList();
         }
 
         public void ChangeEmployeeName(int employeeID, string employeeName, int isFirstName = 1)

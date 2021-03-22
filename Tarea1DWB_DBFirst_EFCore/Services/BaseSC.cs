@@ -7,6 +7,6 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
 {
     public class BaseSC
     {
-        public NorthwindContext dbContext = new NorthwindContext();
+        protected NorthwindContext dbContext = new NorthwindContext();
     }
 }
