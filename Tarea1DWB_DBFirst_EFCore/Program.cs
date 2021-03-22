@@ -79,7 +79,7 @@ namespace Tarea1DWB_DBFirst_EFCore
                 });
         }
 
-        public void ChangeEmployeeName(int employeeID, string employeeName, int isFirstName = 1)
+        public static void ChangeEmployeeName(int employeeID, string employeeName, int isFirstName = 1)
         {
             employeeService.UpdateEmployeeName(employeeID, employeeName, isFirstName);
         }
@@ -87,7 +87,16 @@ namespace Tarea1DWB_DBFirst_EFCore
 
         static void Main(string[] args)
         {
+            //SelectProducts();
+            //SelectProduct("Chang");
+            //ChangeProductName(2,"Chong");
             //addProduct(productName: "Agua loca", unitsInStock: 6, unitsOnOrder: 0, unitPrice: 30, quantityPerUnit: "20 boxes", supplierId: null, categoryId: null, reorderLevel: null);
+            //RemoveProducto(78);
+            //OrderProducts(2);
+            //SelectEmployees();
+            //SelectEmployee("Andrew", "Fuller");
+            //ChangeEmployeeName(3, "Jennifer", 1);
+
             Console.WriteLine("Hello World!");
         }
     }
