@@ -6,10 +6,8 @@ using Tarea1DWB_DBFirst_EFCore.DataAccess;
 
 namespace Tarea1DWB_DBFirst_EFCore.Services
 {
-    public class EmployeeSC
+    public class EmployeeSC : BaseSC
     {
-        public NorthwindContext dbContext = new NorthwindContext();
-
         #region Methods
         public void UpdateEmployeeName(int employeeID, string employeeName, int isFirstName = 1)
         {

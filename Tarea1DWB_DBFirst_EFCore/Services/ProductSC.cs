@@ -6,10 +6,8 @@ using Tarea1DWB_DBFirst_EFCore.DataAccess;
 
 namespace Tarea1DWB_DBFirst_EFCore.Services
 {
-    public class ProductSC
+    public class ProductSC : BaseSC
     {
-        public NorthwindContext dbContext = new NorthwindContext();
-
         #region Methods
         public void UpdateProductName(int productId, string productName)
         {

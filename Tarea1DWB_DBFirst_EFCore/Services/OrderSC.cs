@@ -6,10 +6,8 @@ using Tarea1DWB_DBFirst_EFCore.DataAccess;
 
 namespace Tarea1DWB_DBFirst_EFCore.Services
 {
-    public class OrderSC
+    public class OrderSC : BaseSC
     {
-        public NorthwindContext dbContext = new NorthwindContext();
-
         #region HelperMethods
         public IQueryable<Orders> GetAllOrders()
         {
