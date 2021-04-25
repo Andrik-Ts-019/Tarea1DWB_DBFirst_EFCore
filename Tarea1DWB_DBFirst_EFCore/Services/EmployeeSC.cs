@@ -23,12 +23,27 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
 
             dbContext.SaveChanges();
         }
+
+        //DELETE
+        public void DeleteEmployeeById(int id)
+        {
+            var employee = GetEmployeeById(id);
+            dbContext.Employees.Remove(employee);
+            dbContext.SaveChanges();
+        }
         #endregion
 
         #region HelperMethods
+        //GET
         public IQueryable<Employees> GetAllEmployees()
         {
             return dbContext.Employees.Select(e => e);
+        }
+
+        //GET
+        public Employees GetEmployeeById(int employeeId)
+        {
+            return GetAllEmployees().Where(w => w.EmployeeId == employeeId).FirstOrDefault();
         }
         #endregion
     }
