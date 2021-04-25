@@ -30,9 +30,9 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         }
 
         //GET
-        public Orders GetOrderById(int orderId)
+        public IEnumerable<Orders> GetOrderById(int orderId)
         {
-            return GetAllOrders().Where(w => w.OrderId == orderId).FirstOrDefault(); ;
+            return GetAllOrders().Where(w => w.OrderId == orderId);
         }
         #endregion
     }
