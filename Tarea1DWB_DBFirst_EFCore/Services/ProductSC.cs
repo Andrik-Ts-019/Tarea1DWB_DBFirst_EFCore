@@ -21,6 +21,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
             dbContext.SaveChanges();
         }
 
+        //DELETE
         public void DeleteProduct(int productId)
         {
             var dProduct = GetProductByID(productId);
@@ -31,11 +32,13 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         #endregion
 
         #region HelperMethods
+        //GET
         public IQueryable<Products> GetAllProducts()
         {
             return dbContext.Products.Select(p => p);
         }
 
+        //GET
         public Products GetProductByID(int productId)
         {
             return GetAllProducts().Where(prod => prod.ProductId == productId).FirstOrDefault();
