@@ -92,7 +92,7 @@ namespace Tarea1DWB_DBFirst_EFCore
 
         static void Main(string[] args)
         {
-            SelectProducts();
+            //SelectProducts();
             //SelectProduct("Chang");
             //ChangeProductName(2,"Chong");
             //addProduct(productName: "Agua loca", unitsInStock: 6, unitsOnOrder: 0, unitPrice: 30, quantityPerUnit: "20 boxes", supplierId: null, categoryId: null, reorderLevel: null);
