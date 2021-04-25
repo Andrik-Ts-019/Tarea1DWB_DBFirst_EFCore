@@ -11,7 +11,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         #region
         public void UpdateShipAdressOrder(int orderId, string shipAdress)
         {
-            var currentOrder = GetOrderById(orderId);
+            var currentOrder = GetOrderById(orderId).FirstOrDefault();
 
             if (currentOrder == null)
                 throw new Exception("\nID de Orden no escontrado");
