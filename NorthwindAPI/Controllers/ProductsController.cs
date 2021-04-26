@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tarea1DWB_DBFirst_EFCore.Services;
+using Tarea1DWB_DBFirst_EFCore.DataAccess;
 
 namespace NorthwindAPI.Controllers
 {
@@ -13,17 +15,19 @@ namespace NorthwindAPI.Controllers
     public class ProductsController : ControllerBase
     {
         // GET: api/Products
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet(Name ="GetProducts")]
+        public List<Products> Get()
         {
-            return new string[] { "value1", "value2" };
+            var products = new ProductSC().GetAllProducts().ToList();
+            return products;
         }
 
         // GET: api/Products/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "GetProductById")]
+        public Products Get(int id)
         {
-            return "value";
+            var product = new ProductSC().GetProductByID(id).FirstOrDefault();
+            return product;
         }
 
         // POST: api/Products
