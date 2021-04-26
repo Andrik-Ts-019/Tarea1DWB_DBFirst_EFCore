@@ -71,6 +71,7 @@ namespace NorthwindAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            new EmployeeSC().DeleteEmployeeById(id);
         }
     }
 }
