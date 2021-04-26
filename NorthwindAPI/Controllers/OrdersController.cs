@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NorthwindAPI.Controllers
 {
-    /* https:// */
+    // https://localhost:5001/api/[controller]/...
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
