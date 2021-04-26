@@ -41,9 +41,9 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         }
 
         //GET
-        public Employees GetEmployeeById(int employeeId)
+        public IEnumerable<Employees> GetEmployeeById(int employeeId)
         {
-            return GetAllEmployees().Where(w => w.EmployeeId == employeeId).FirstOrDefault();
+            return GetAllEmployees().Where(w => w.EmployeeId == employeeId);
         }
         #endregion
     }
