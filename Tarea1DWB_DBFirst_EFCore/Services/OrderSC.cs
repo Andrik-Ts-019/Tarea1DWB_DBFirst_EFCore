@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFirst.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,24 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
     public class OrderSC : BaseSC
     {
         #region
+        //PUT
+        public void NewOrder(OrderModel newOrder)
+        {
+            var newOrderRegister = new Orders() { 
+                CustomerId = newOrder.ClientID,
+                EmployeeId = newOrder.ClerkID,
+                OrderDate = newOrder.CashOrderDate,
+                RequiredDate = newOrder.RequestedDate,
+                ShippedDate = newOrder.SentDate,
+                ShipVia = newOrder.ShipperID,
+                Freight = newOrder.Cargo,
+                ShipName = newOrder.TransportName,
+                ShipAddress = newOrder.TransportAddress,
+                ShipCity = newOrder.TransportCity
+            };
+        }
+
+        //POST
         public void UpdateShipAdressOrder(int orderId, string shipAdress)
         {
             var currentOrder = GetOrderById(orderId).FirstOrDefault();

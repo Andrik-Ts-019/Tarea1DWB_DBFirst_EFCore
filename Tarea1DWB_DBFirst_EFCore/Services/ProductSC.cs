@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFirst.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,21 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
     public class ProductSC : BaseSC
     {
         #region Methods
+        //PUT
+        public void AddProduct(CommodityModel newProduct)
+        {
+            var newProductRegister = new Products()
+            {
+                ProductName = newProduct.Name,
+                QuantityPerUnit = newProduct.Quantity,
+                UnitPrice = newProduct.Price,
+                UnitsInStock = newProduct.Stock
+            };
+            dbContext.Products.Add(newProductRegister);
+            dbContext.SaveChanges();
+        }
+
+        //POST
         public void UpdateProductName(int productId, string productName)
         {
             Products currentProduct = GetProductByID(productId).FirstOrDefault();
@@ -44,6 +60,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
             return GetAllProducts().Where(prod => prod.ProductId == productId);
         }
 
+        //PUT
         public void AddNewProduct(string productName, int? supplierId, int? categoryId, decimal? unitPrice, short? unitsInStock, short? unitsOnOrder, short? reorderLevel, bool discontinued, string quantityPerUnit)
         {
             var newProduct = new Products();

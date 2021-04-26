@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBFirst.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,20 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
     public class EmployeeSC : BaseSC
     {
         #region Methods
+        //PUT
+        public void AddEmployee(EmployeeModel newEmployee)
+        {
+            var newEmployeeRegister = new Employees()
+            {
+                FirstName = newEmployee.Name,
+                LastName = newEmployee.Surname,
+                Title = newEmployee.Job
+            };
+            dbContext.Employees.Add(newEmployeeRegister);
+            dbContext.SaveChanges();
+        }
+
+        //POST
         public void UpdateEmployeeName(int employeeID, string employeeName, int isFirstName = 1)
         {
             var currentEmployee = GetAllEmployees().Where(e => e.EmployeeId == employeeID).FirstOrDefault();
