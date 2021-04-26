@@ -4,18 +4,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Tarea1DWB_DBFirst_EFCore.Services;
+using Tarea1DWB_DBFirst_EFCore.DataAccess;
 
 namespace NorthwindAPI.Controllers
 {
+    // https://localhost:5001/api/[controller]/...
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {
         // GET: api/Employees
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Employees> Get()
         {
-            return new string[] { "value1", "value2" };
+            var employee = new EmployeeSC().GetAllEmployees().Select(s => new Employees { 
+                EmployeeId = s.EmployeeId,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                Title = s.Title,
+                Address = s.Address,
+                City = s.City,
+                Region = s.Region,
+                PostalCode = s.PostalCode,
+                Country = s.Country,
+                HomePhone = s.HomePhone,
+                Notes = s.Notes
+            }).ToList();
+            return employee;
         }
 
         // GET: api/Employees/5
