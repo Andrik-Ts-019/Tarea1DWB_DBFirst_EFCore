@@ -27,7 +27,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         //DELETE
         public void DeleteEmployeeById(int id)
         {
-            var employee = GetEmployeeById(id);
+            var employee = GetEmployeeById(id).FirstOrDefault();
             dbContext.Employees.Remove(employee);
             dbContext.SaveChanges();
         }
