@@ -102,7 +102,7 @@ namespace Tarea1DWB_DBFirst_EFCore
             //SelectEmployee("Andrew", "Fuller");
             //ChangeEmployeeName(3, "Jennifer", 1);
 
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("Hello World!");
         }
     }
 }
