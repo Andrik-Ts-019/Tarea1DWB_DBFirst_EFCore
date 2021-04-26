@@ -15,10 +15,10 @@ namespace NorthwindAPI.Controllers
     public class EmployeesController : ControllerBase
     {
         // GET: api/Employees
-        [HttpGet]
+        [HttpGet(Name = "GetEmployees")]
         public List<Employees> Get()
         {
-            var employee = new EmployeeSC().GetAllEmployees().Select(s => new Employees { 
+            var employees = new EmployeeSC().GetAllEmployees().Select(s => new Employees { 
                 EmployeeId = s.EmployeeId,
                 FirstName = s.FirstName,
                 LastName = s.LastName,
@@ -31,11 +31,11 @@ namespace NorthwindAPI.Controllers
                 HomePhone = s.HomePhone,
                 Notes = s.Notes
             }).ToList();
-            return employee;
+            return employees;
         }
 
         // GET: api/Employees/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetEmployeeById")]
         public Employees Get(int id)
         {
             var employee = new EmployeeSC().GetEmployeeById(id).Select(s => new Employees
