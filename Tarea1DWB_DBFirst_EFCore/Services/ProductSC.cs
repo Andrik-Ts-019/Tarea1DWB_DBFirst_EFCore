@@ -11,7 +11,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         #region Methods
         public void UpdateProductName(int productId, string productName)
         {
-            Products currentProduct = GetProductByID(productId);
+            Products currentProduct = GetProductByID(productId).FirstOrDefault();
 
             if (currentProduct == null)
                 throw new Exception("\nID de producto no escontrado");
@@ -24,7 +24,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         //DELETE
         public void DeleteProduct(int productId)
         {
-            var dProduct = GetProductByID(productId);
+            var dProduct = GetProductByID(productId).FirstOrDefault();
 
             dbContext.Products.Remove(dProduct);
             dbContext.SaveChanges();
@@ -39,9 +39,9 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         }
 
         //GET
-        public Products GetProductByID(int productId)
+        public IEnumerable<Products> GetProductByID(int productId)
         {
-            return GetAllProducts().Where(prod => prod.ProductId == productId).FirstOrDefault();
+            return GetAllProducts().Where(prod => prod.ProductId == productId);
         }
 
         public void AddNewProduct(string productName, int? supplierId, int? categoryId, decimal? unitPrice, short? unitsInStock, short? unitsOnOrder, short? reorderLevel, bool discontinued, string quantityPerUnit)
