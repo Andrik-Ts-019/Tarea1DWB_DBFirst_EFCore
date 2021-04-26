@@ -36,9 +36,23 @@ namespace NorthwindAPI.Controllers
 
         // GET: api/Employees/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Employees Get(int id)
         {
-            return "value";
+            var employee = new EmployeeSC().GetEmployeeById(id).Select(s => new Employees
+            {
+                EmployeeId = s.EmployeeId,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                Title = s.Title,
+                Address = s.Address,
+                City = s.City,
+                Region = s.Region,
+                PostalCode = s.PostalCode,
+                Country = s.Country,
+                HomePhone = s.HomePhone,
+                Notes = s.Notes
+            }).FirstOrDefault();
+            return employee;
         }
 
         // POST: api/Employees
