@@ -27,7 +27,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
             };
         }
 
-        //POST
+        //PUT
         public void UpdateShipAdressOrder(int orderId, string shipAdress)
         {
             var currentOrder = GetOrderById(orderId).FirstOrDefault();
@@ -37,6 +37,15 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
 
             currentOrder.ShipAddress = shipAdress;
 
+            dbContext.SaveChanges();
+        }
+
+        //DELETE
+        public void DeleteOrderById(int orderId)
+        {
+            var dOrder = GetOrderById(orderId).FirstOrDefault();
+
+            dbContext.Orders.Remove(dOrder);
             dbContext.SaveChanges();
         }
         #endregion
