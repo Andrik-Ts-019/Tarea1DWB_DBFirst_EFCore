@@ -44,7 +44,7 @@ namespace NorthwindAPI.Controllers
         {
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Products/5
         [HttpDelete("{id}", Name = "DeleteProduct")]
         public void Delete(int id)
         {

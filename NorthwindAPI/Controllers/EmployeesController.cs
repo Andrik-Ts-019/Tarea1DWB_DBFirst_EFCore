@@ -69,7 +69,7 @@ namespace NorthwindAPI.Controllers
         {
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Employees/5
         [HttpDelete("{id}", Name = "DeleteEmployee")]
         public void Delete(int id)
         {
