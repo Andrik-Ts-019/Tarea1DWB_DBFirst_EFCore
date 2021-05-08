@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tarea1DWB_DBFirst_EFCore.Services;
 using Tarea1DWB_DBFirst_EFCore.DataAccess;
+using DBFirst.Models;
 
 namespace NorthwindAPI.Controllers
 {
@@ -56,9 +57,10 @@ namespace NorthwindAPI.Controllers
         }
 
         // POST: api/Employees
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost(Name = "NewEmployee")]
+        public void Post([FromBody] EmployeeModel newEmployee)
         {
+            new EmployeeSC().AddEmployee(newEmployee);
         }
 
         // PUT: api/Employees/5
