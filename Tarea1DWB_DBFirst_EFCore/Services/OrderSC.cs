@@ -13,7 +13,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         //POST
         public void NewOrder(OrderModel newOrder)
         {
-            var newOrderRegister = new Orders() { 
+            var newOrderRegister = new Orders() {
                 CustomerId = newOrder.ClientID,
                 EmployeeId = newOrder.ClerkID,
                 OrderDate = newOrder.CashOrderDate,
@@ -25,6 +25,8 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
                 ShipAddress = newOrder.TransportAddress,
                 ShipCity = newOrder.TransportCity
             };
+            dbContext.Orders.Add(newOrderRegister);
+            dbContext.SaveChanges();
         }
 
         //PUT
