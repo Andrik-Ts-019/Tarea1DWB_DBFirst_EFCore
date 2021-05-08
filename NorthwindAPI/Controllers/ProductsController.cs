@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tarea1DWB_DBFirst_EFCore.Services;
 using Tarea1DWB_DBFirst_EFCore.DataAccess;
+using DBFirst.Models;
 
 namespace NorthwindAPI.Controllers
 {
@@ -31,9 +32,10 @@ namespace NorthwindAPI.Controllers
         }
 
         // POST: api/Products
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost(Name = "NewCommodity")]
+        public void Post([FromBody] CommodityModel newCommodity)
         {
+            new ProductSC().AddProduct(newCommodity);
         }
 
         // PUT: api/Products/5
