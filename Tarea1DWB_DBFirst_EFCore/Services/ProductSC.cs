@@ -38,7 +38,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
         }
 
         //DELETE
-        public void DeleteProduct(int productId)
+        public void DeleteProductById(int productId)
         {
             var dProduct = GetProductByID(productId).FirstOrDefault();
 
