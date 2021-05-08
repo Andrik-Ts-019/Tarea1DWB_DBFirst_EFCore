@@ -46,7 +46,7 @@ namespace Tarea1DWB_DBFirst_EFCore
 
         public static void RemoveProducto(int productId)
         {
-            productService.DeleteProduct(productId);
+            productService.DeleteProductById(productId);
         }
 
 
