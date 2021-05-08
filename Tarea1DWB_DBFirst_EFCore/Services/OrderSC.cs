@@ -10,7 +10,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
     public class OrderSC : BaseSC
     {
         #region
-        //PUT
+        //POST
         public void NewOrder(OrderModel newOrder)
         {
             var newOrderRegister = new Orders() { 

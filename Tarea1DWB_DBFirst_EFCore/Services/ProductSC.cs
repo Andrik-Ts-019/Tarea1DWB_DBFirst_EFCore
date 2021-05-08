@@ -10,7 +10,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
     public class ProductSC : BaseSC
     {
         #region Methods
-        //PUT
+        //POST
         public void AddProduct(CommodityModel newProduct)
         {
             var newProductRegister = new Products()
@@ -24,7 +24,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
             dbContext.SaveChanges();
         }
 
-        //POST
+        //PUT
         public void UpdateProductName(int productId, string productName)
         {
             Products currentProduct = GetProductByID(productId).FirstOrDefault();
@@ -60,7 +60,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
             return GetAllProducts().Where(prod => prod.ProductId == productId);
         }
 
-        //PUT
+        //POST
         public void AddNewProduct(string productName, int? supplierId, int? categoryId, decimal? unitPrice, short? unitsInStock, short? unitsOnOrder, short? reorderLevel, bool discontinued, string quantityPerUnit)
         {
             var newProduct = new Products();

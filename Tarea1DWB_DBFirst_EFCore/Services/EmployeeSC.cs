@@ -10,7 +10,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
     public class EmployeeSC : BaseSC
     {
         #region Methods
-        //PUT
+        //POST
         public void AddEmployee(EmployeeModel newEmployee)
         {
             var newEmployeeRegister = new Employees()
@@ -23,7 +23,7 @@ namespace Tarea1DWB_DBFirst_EFCore.Services
             dbContext.SaveChanges();
         }
 
-        //POST
+        //PUT
         public void UpdateEmployeeName(int employeeID, string employeeName, int isFirstName = 1)
         {
             var currentEmployee = GetAllEmployees().Where(e => e.EmployeeId == employeeID).FirstOrDefault();
