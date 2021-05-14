@@ -15,11 +15,13 @@ namespace NorthwindAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private ProductSC productServce = new ProductSC();
+
         // GET: api/Products
         [HttpGet(Name ="GetProducts")]
         public List<Products> Get()
         {
-            var products = new ProductSC().GetAllProducts().ToList();
+            var products = productServce.GetAllProducts().ToList();
             return products;
         }
 
@@ -27,7 +29,7 @@ namespace NorthwindAPI.Controllers
         [HttpGet("{id}", Name = "GetProductById")]
         public Products Get(int id)
         {
-            var product = new ProductSC().GetProductByID(id).FirstOrDefault();
+            var product = productServce.GetProductByID(id).FirstOrDefault();
             return product;
         }
 
@@ -35,7 +37,7 @@ namespace NorthwindAPI.Controllers
         [HttpPost(Name = "NewCommodity")]
         public void Post([FromBody] CommodityModel newCommodity)
         {
-            new ProductSC().AddProduct(newCommodity);
+            productServce.AddProduct(newCommodity);
         }
 
         // PUT: api/Products/5
@@ -48,7 +50,7 @@ namespace NorthwindAPI.Controllers
         [HttpDelete("{id}", Name = "DeleteProduct")]
         public void Delete(int id)
         {
-            new ProductSC().DeleteProductById(id);
+            productServce.DeleteProductById(id);
         }
     }
 }
