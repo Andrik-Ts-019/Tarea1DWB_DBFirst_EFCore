@@ -15,11 +15,13 @@ namespace NorthwindAPI.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
+        private OrderSC orderService = new OrderSC();
+
         // GET: api/Orders
         [HttpGet(Name ="GetOrders")]
         public List<Orders> Get()
         {
-            var orders = new OrderSC().GetAllOrders().ToList();
+            var orders = orderService.GetAllOrders().ToList();
             return orders;
         }
 
@@ -27,7 +29,7 @@ namespace NorthwindAPI.Controllers
         [HttpGet("{id}", Name = "GetOrdersById")]
         public Orders Get(int id)
         {
-            var order = new OrderSC().GetOrderById(id).FirstOrDefault();
+            var order = orderService.GetOrderById(id).FirstOrDefault();
             return order;
         }
 
@@ -35,7 +37,7 @@ namespace NorthwindAPI.Controllers
         [HttpPost(Name = "NewOrder")]
         public void Post([FromBody] OrderModel newOrder)
         {
-            new OrderSC().NewOrder(newOrder);
+            orderService.NewOrder(newOrder);
         }
 
         // PUT: api/Orders/5
@@ -48,7 +50,7 @@ namespace NorthwindAPI.Controllers
         [HttpDelete("{id}", Name = "DeleteOrder")]
         public void Delete(int id)
         {
-            new OrderSC().DeleteOrderById(id);
+            orderService.DeleteOrderById(id);
         }
     }
 }
