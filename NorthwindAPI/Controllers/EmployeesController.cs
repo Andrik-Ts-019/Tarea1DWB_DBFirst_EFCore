@@ -15,11 +15,13 @@ namespace NorthwindAPI.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+        private EmployeeSC employeeService = new EmployeeSC();
+
         // GET: api/Employees
         [HttpGet(Name = "GetEmployees")]
         public List<Employees> Get()
         {
-            var employees = new EmployeeSC().GetAllEmployees().Select(s => new Employees { 
+            var employees = employeeService.GetAllEmployees().Select(s => new Employees { 
                 EmployeeId = s.EmployeeId,
                 FirstName = s.FirstName,
                 LastName = s.LastName,
@@ -39,7 +41,7 @@ namespace NorthwindAPI.Controllers
         [HttpGet("{id}", Name = "GetEmployeeById")]
         public Employees Get(int id)
         {
-            var employee = new EmployeeSC().GetEmployeeById(id).Select(s => new Employees
+            var employee = employeeService.GetEmployeeById(id).Select(s => new Employees
             {
                 EmployeeId = s.EmployeeId,
                 FirstName = s.FirstName,
@@ -60,7 +62,7 @@ namespace NorthwindAPI.Controllers
         [HttpPost(Name = "NewEmployee")]
         public void Post([FromBody] EmployeeModel newEmployee)
         {
-            new EmployeeSC().AddEmployee(newEmployee);
+            employeeService.AddEmployee(newEmployee);
         }
 
         // PUT: api/Employees/5
@@ -73,7 +75,7 @@ namespace NorthwindAPI.Controllers
         [HttpDelete("{id}", Name = "DeleteEmployee")]
         public void Delete(int id)
         {
-            new EmployeeSC().DeleteEmployeeById(id);
+            employeeService.DeleteEmployeeById(id);
         }
     }
 }
