@@ -19,38 +19,41 @@ namespace NorthwindAPI.Controllers
 
         // GET: api/Orders
         [HttpGet(Name ="GetOrders")]
-        public List<Orders> Get()
+        public IActionResult Get()
         {
             var orders = orderService.GetAllOrders().ToList();
-            return orders;
+            return Ok(orders);
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}", Name = "GetOrdersById")]
-        public Orders Get(int id)
+        public IActionResult Get(int id)
         {
             var order = orderService.GetOrderById(id).FirstOrDefault();
-            return order;
+            return Ok(order);
         }
 
         // POST: api/Orders
         [HttpPost(Name = "NewOrder")]
-        public void Post([FromBody] OrderModel newOrder)
+        public IActionResult Post([FromBody] OrderModel newOrder)
         {
             orderService.NewOrder(newOrder);
+            return Ok();
         }
 
         // PUT: api/Orders/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] string value)
         {
+            return Ok();
         }
 
         // DELETE: api/Orders/5
         [HttpDelete("{id}", Name = "DeleteOrder")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             orderService.DeleteOrderById(id);
+            return Ok();
         }
     }
 }

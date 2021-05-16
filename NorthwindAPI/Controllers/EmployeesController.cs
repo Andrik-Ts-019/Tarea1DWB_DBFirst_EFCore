@@ -19,7 +19,7 @@ namespace NorthwindAPI.Controllers
 
         // GET: api/Employees
         [HttpGet(Name = "GetEmployees")]
-        public List<Employees> Get()
+        public IActionResult Get()
         {
             var employees = employeeService.GetAllEmployees().Select(s => new Employees { 
                 EmployeeId = s.EmployeeId,
@@ -34,12 +34,12 @@ namespace NorthwindAPI.Controllers
                 HomePhone = s.HomePhone,
                 Notes = s.Notes
             }).ToList();
-            return employees;
+            return Ok(employees);
         }
 
         // GET: api/Employees/5
         [HttpGet("{id}", Name = "GetEmployeeById")]
-        public Employees Get(int id)
+        public IActionResult Get(int id)
         {
             var employee = employeeService.GetEmployeeById(id).Select(s => new Employees
             {
@@ -55,27 +55,30 @@ namespace NorthwindAPI.Controllers
                 HomePhone = s.HomePhone,
                 Notes = s.Notes
             }).FirstOrDefault();
-            return employee;
+            return Ok(employee);
         }
 
         // POST: api/Employees
         [HttpPost(Name = "NewEmployee")]
-        public void Post([FromBody] EmployeeModel newEmployee)
+        public IActionResult Post([FromBody] EmployeeModel newEmployee)
         {
             employeeService.AddEmployee(newEmployee);
+            return Ok();
         }
 
         // PUT: api/Employees/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] string value)
         {
+            return Ok();
         }
 
         // DELETE: api/Employees/5
         [HttpDelete("{id}", Name = "DeleteEmployee")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             employeeService.DeleteEmployeeById(id);
+            return Ok();
         }
     }
 }
