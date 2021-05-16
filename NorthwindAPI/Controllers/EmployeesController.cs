@@ -34,6 +34,11 @@ namespace NorthwindAPI.Controllers
                 HomePhone = s.HomePhone,
                 Notes = s.Notes
             }).ToList();
+
+            if(employees == null)
+            {
+                throw new Exception("No se encontraron empleados.");
+            }
             return Ok(employees);
         }
 
@@ -55,6 +60,11 @@ namespace NorthwindAPI.Controllers
                 HomePhone = s.HomePhone,
                 Notes = s.Notes
             }).FirstOrDefault();
+
+            if (employee == null)
+            {
+                throw new Exception("El empleado con el ID solicitado no existe");
+            }
             return Ok(employee);
         }
 
@@ -62,8 +72,16 @@ namespace NorthwindAPI.Controllers
         [HttpPost(Name = "NewEmployee")]
         public IActionResult Post([FromBody] EmployeeModel newEmployee)
         {
-            employeeService.AddEmployee(newEmployee);
-            return Ok();
+            try
+            {
+                employeeService.AddEmployee(newEmployee);
+                return Ok();
+
+            }
+            catch
+            {
+                throw new Exception("Mo se pudo agregar al empleado");
+            }
         }
 
         // PUT: api/Employees/5
@@ -77,8 +95,15 @@ namespace NorthwindAPI.Controllers
         [HttpDelete("{id}", Name = "DeleteEmployee")]
         public IActionResult Delete(int id)
         {
-            employeeService.DeleteEmployeeById(id);
-            return Ok();
+            try
+            {
+                employeeService.DeleteEmployeeById(id);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception("No se pudo eliminar al empleado");
+            }
         }
     }
 }

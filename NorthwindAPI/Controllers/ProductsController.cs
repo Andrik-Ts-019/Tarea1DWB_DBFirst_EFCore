@@ -22,6 +22,11 @@ namespace NorthwindAPI.Controllers
         public IActionResult Get()
         {
             var products = productService.GetAllProducts().ToList();
+
+            if (products == null)
+            {
+                throw new Exception("No se encontraron productos.");
+            }
             return Ok(products);
         }
 
@@ -30,6 +35,11 @@ namespace NorthwindAPI.Controllers
         public IActionResult Get(int id)
         {
             var product = productService.GetProductByID(id).FirstOrDefault();
+
+            if (product == null)
+            {
+                throw new Exception("El empleado con el ID solicitado no existe.");
+            }
             return Ok(product);
         }
 
@@ -37,8 +47,15 @@ namespace NorthwindAPI.Controllers
         [HttpPost(Name = "NewCommodity")]
         public IActionResult Post([FromBody] CommodityModel newCommodity)
         {
-            productService.AddProduct(newCommodity);
-            return Ok();
+            try
+            {
+                productService.AddProduct(newCommodity);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception("No se pudo agregar el producto.");
+            }
         }
 
         // PUT: api/Products/5
@@ -52,8 +69,15 @@ namespace NorthwindAPI.Controllers
         [HttpDelete("{id}", Name = "DeleteProduct")]
         public IActionResult Delete(int id)
         {
-            productService.DeleteProductById(id);
-            return Ok();
+            try
+            {
+                productService.DeleteProductById(id);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception("No se pudo eliminar el producto");
+            }
         }
     }
 }

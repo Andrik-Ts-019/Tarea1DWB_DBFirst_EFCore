@@ -22,6 +22,10 @@ namespace NorthwindAPI.Controllers
         public IActionResult Get()
         {
             var orders = orderService.GetAllOrders().ToList();
+            if (orders == null)
+            {
+                throw new Exception("No se encontraron ordenes.");
+            }
             return Ok(orders);
         }
 
@@ -30,6 +34,11 @@ namespace NorthwindAPI.Controllers
         public IActionResult Get(int id)
         {
             var order = orderService.GetOrderById(id).FirstOrDefault();
+
+            if (order == null)
+            {
+                throw new Exception("La orden con el ID solicitado no existe");
+            }
             return Ok(order);
         }
 
@@ -37,8 +46,15 @@ namespace NorthwindAPI.Controllers
         [HttpPost(Name = "NewOrder")]
         public IActionResult Post([FromBody] OrderModel newOrder)
         {
-            orderService.NewOrder(newOrder);
-            return Ok();
+            try
+            {
+                orderService.NewOrder(newOrder);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception("No se pudo agregar la orden");
+            }
         }
 
         // PUT: api/Orders/5
@@ -52,8 +68,15 @@ namespace NorthwindAPI.Controllers
         [HttpDelete("{id}", Name = "DeleteOrder")]
         public IActionResult Delete(int id)
         {
-            orderService.DeleteOrderById(id);
-            return Ok();
+            try
+            {
+                orderService.DeleteOrderById(id);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception("No se puso eliminar la orden");
+            }
         }
     }
 }
